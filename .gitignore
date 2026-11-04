@@ -1,0 +1,14 @@
+# Compiled files
+*.exe
+*.obj
+*.dll
+*.pdb
+*.ilk
+
+# Output results
+hasil_*.png
+hasil_multi_view.png
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
