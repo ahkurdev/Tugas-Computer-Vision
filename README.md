@@ -1,67 +1,71 @@
-# Deteksi Objek Berwarna Merah (Computer Vision)
+Bahasa Indonesia version: [readme.id.md](readme.id.md)
 
-Program segmentasi citra dan deteksi objek berwarna merah menggunakan ruang warna HSV dengan C++ dan OpenCV.
+# Red Object Detection (Computer Vision)
 
-## Fitur Utama
+Image segmentation and red-object detection program using the HSV colour space with C++ and OpenCV.
 
-- **Segmentasi Warna HSV**: Menggabungkan dua rentang nilai Hue (0-10 dan 170-180) untuk mencakup spektrum warna merah secara menyeluruh.
-- **Operasi Morfologi**: Menggunakan *Morphological Opening* dan *Closing* untuk menghilangkan noise dan menutup lubang pada mask biner.
-- **Deteksi Objek & Bounding Box**: Menghitung kontur, mencari centroid (titik pusat) dengan image moments, menghitung luas area, dan menampilkan bounding box hijau serta label pada objek merah.
-- **Tampilan Multi-View (1 Window)**:
-  - Menggabungkan ke-4 tahapan proses ke dalam satu jendela dengan sekat rapi:
+## Key Features
+
+- **HSV Colour Segmentation**: Combines two hue ranges (0-10 and 170-180) to cover the full red spectrum.
+- **Morphological Operations**: Uses *Morphological Opening* and *Closing* to remove noise and fill holes in the binary mask.
+- **Object Detection & Bounding Box**: Computes contours, finds the centroid (centre point) with image moments, calculates the area, and draws a green bounding box with a label on red objects.
+- **Multi-View Display (1 Window)**:
+  - Combines all 4 processing stages into a single window with neat dividers:
     1. *Original*
-    2. *Mask Merah (Biner)*
-    3. *Hasil Segmentasi*
-    4. *Hasil Deteksi*
-  - **Dua Mode Tata Letak**: Mendukung mode **4 Kolom Berdampingan (1x4)** untuk gambar potret/vertikal dan **Grid (2x2)** untuk gambar lanskap/webcam.
-- **Inspeksi Nilai HSV Interaktif**: Klik kiri pada panel *Original* untuk melihat nilai `H`, `S`, `V` piksel langsung di konsol.
-- **Trackbar Kontrol Real-time**: Slider untuk kalibrasi dinamis nilai Hue, Saturasi, Value, dan Luas area minimum.
+    2. *Red Mask (Binary)*
+    3. *Segmentation Result*
+    4. *Detection Result*
+  - **Two Layout Modes**: Supports **4 Side-by-Side Columns (1x4)** for portrait/vertical images and **Grid (2x2)** for landscape images/webcam.
+- **Interactive HSV Value Inspection**: Left-click on the *Original* panel to see the pixel's `H`, `S`, `V` values directly in the console.
+- **Real-time Control Trackbars**: Sliders for dynamic calibration of Hue, Saturation, Value, and minimum area.
 
 ---
 
-## Kontrol Keyboard & Mouse
+## Keyboard & Mouse Controls
 
-| Tombol / Aksi | Fungsi |
+| Key / Action | Function |
 | :--- | :--- |
-| **`ESC`** atau **`q`** | Keluar dari program |
-| **`t`** atau **`TAB`** | Ganti mode tata letak (4 Kolom <-> Grid 2x2) |
-| **`s`** | Simpan gambar hasil (`hasil_1` s/d `hasil_4` dan `hasil_multi_view.png`) |
-| **`p`** | Cetak parameter HSV aktif ke konsol |
-| **Klik Kiri Mouse** | Klik pada panel "1. Original" untuk mencetak koordinat dan nilai `H, S, V` piksel |
+| **ESC** or **q** | Exit the program |
+| **t** or **TAB** | Switch layout mode (4 Columns <-> 2x2 Grid) |
+| **s** | Save result images (`hasil_1` to `hasil_4` and `hasil_multi_view.png`) |
+| **p** | Print the active HSV parameters to the console |
+| **Left Mouse Click** | Click on the "1. Original" panel to print the pixel's coordinates and `H, S, V` values |
 
 ---
 
-## Prasyarat & Dependensi
+## Prerequisites & Dependencies
 
-- **Compiler C++**: Visual Studio (MSVC) C++17 atau yang kompatibel
+- **C++ Compiler**: Visual Studio (MSVC) C++17 or compatible
 - **OpenCV**: OpenCV 4.x (C++ build x64)
 
 ---
 
-## Cara Kompilasi (MSVC / Developer Command Prompt)
+## How to Compile (MSVC / Developer Command Prompt)
 
-Jalankan perintah berikut di **x64 Native Tools Command Prompt for VS** atau Developer PowerShell:
+Run the following command in the **x64 Native Tools Command Prompt for VS** or Developer PowerShell:
 
 ```cmd
-cl.exe /EHsc /std:c++17 /O2 /I"<path_ke_opencv>\build\include" DeteksiMerah.cpp /link /LIBPATH:"<path_ke_opencv>\build\x64\vc16\lib" opencv_world4110.lib /OUT:DeteksiMerah.exe
+cl.exe /EHsc /std:c++17 /O2 /I"<path_to_opencv>\build\include" DeteksiMerah.cpp /link /LIBPATH:"<path_to_opencv>\build\x64\vc16\lib" opencv_world4110.lib /OUT:DeteksiMerah.exe
 ```
 
-> **Catatan**: Pastikan file `opencv_world4110.dll` berada di folder yang sama dengan file `DeteksiMerah.exe` agar dapat dieksekusi.
+> **Note**: Make sure the `opencv_world4110.dll` file is in the same folder as `DeteksiMerah.exe` so it can run.
 
 ---
 
-## Cara Menjalankan
+## How to Run
 
-1. **Menggunakan Gambar File**:
+1. **Using an Image File**:
    ```powershell
    .\DeteksiMerah.exe Jambu.jpg
    ```
-   atau
+
+   or
+
    ```powershell
    .\DeteksiMerah.exe Strawberry.jpg
    ```
 
-2. **Menggunakan Webcam (Live Stream)**:
+2. **Using a Webcam (Live Stream)**:
    ```powershell
    .\DeteksiMerah.exe
    ```
